@@ -67,8 +67,8 @@ function includesChar(str, ch) {
 }
 
 /* 기능 구현 3. 판정 결과 문자열 출력 기능
-    - 낫싱/볼/스트라이크/볼+스트라이크
-    - 볼과 스트라이크 동시에 나오면 볼이 먼저
+  - 낫싱/볼/스트라이크/볼+스트라이크
+  - 볼과 스트라이크 동시에 나오면 볼이 먼저
 */
 
 function resultJudge(ball, strike) {
@@ -81,4 +81,24 @@ function resultJudge(ball, strike) {
   } else {
     return `${strike}스트라이크`;
   }
+}
+
+/* 기능 구현 4. 랜덤 숫자 생성 기능
+  - MissionUtils 라이브러리의 Random.pickNumberInRange 사용
+  - Random.pickNumberInRange를 세 번 호출하여 한 자리 수식 확정
+*/
+
+function makeComputerInput() {
+  const correctAnswer = [];
+
+  while (correctAnswer.length < 3) {
+    const digit = window.MissionUtils.Random.pickNumberInRange(1, 9);
+
+    // 이미 뽑힌 숫자를 포함하고 있지 않으면 배열에 새로운 숫자 추가
+    if (!correctAnswer.includes(digit)) {
+      correctAnswer.push(digit);
+    }
+  }
+  // 배열을 문자열로 합치기 join() 함수 이용, 공백 없이
+  return correctAnswer.join("");
 }
