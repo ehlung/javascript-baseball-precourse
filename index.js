@@ -13,6 +13,7 @@ export default function BaseballGame() {
       return "";
     }
     const { ball, strike } = judgeCorrect(computerInput, userInput);
+    return resultJudge(ball, strike);
   };
 }
 
@@ -51,16 +52,33 @@ function judgeCorrect(computerInput, userInput) {
       strike += 1;
     }
     // 같은 수가 다른 자리에 있을 경우
-    else if (incluedsChar(computerInput, userInput[i])) {
+    else if (includesChar(computerInput, userInput[i])) {
       ball += 1;
     }
   }
   return { ball, strike };
 }
 
-function incluedsChar(str, ch) {
+function includesChar(str, ch) {
   for (let i = 0; i < str.length; i += 1) {
     if (str[i] === ch) return true;
   }
   return false;
+}
+
+/* 기능 구현 3. 판정 결과 문자열 출력 기능
+    - 낫싱/볼/스트라이크/볼+스트라이크
+    - 볼과 스트라이크 동시에 나오면 볼이 먼저
+*/
+
+function resultJudge(ball, strike) {
+  if (ball === 0 && strike === 0) {
+    return "낫싱";
+  } else if (ball > 0 && strike > 0) {
+    return `${ball}볼 ${strike}스트라이크`;
+  } else if (ball > 0) {
+    return `${ball}볼`;
+  } else {
+    return `${strike}스트라이크`;
+  }
 }
