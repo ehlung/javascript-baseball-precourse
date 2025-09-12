@@ -12,7 +12,7 @@ export default function BaseballGame() {
       window.alert("올바르지 않은 입력입니다.");
       return "";
     }
-    return "";
+    const { ball, strike } = judgeCorrect(computerInput, userInput);
   };
 }
 
@@ -35,4 +35,32 @@ function isValidInput(userInput) {
   if (second === third) return false;
 
   return true;
+}
+
+/* 기능 구현 2. 볼/스트라이크 판정 기능 추가
+  - 규칙 : 같은 수가 같은 자리 > 스트라이크 / 다른 자리 > 볼 / 전혀 없으면 > 낫싱
+*/
+
+function judgeCorrect(computerInput, userInput) {
+  let ball = 0;
+  let strike = 0;
+
+  for (let i = 0; i < 3; i++) {
+    // 같은 수가 같은 자리에 있을 경우
+    if (userInput[i] === computerInput[i]) {
+      strike += 1;
+    }
+    // 같은 수가 다른 자리에 있을 경우
+    else if (incluedsChar(computerInput, userInput[i])) {
+      ball += 1;
+    }
+  }
+  return { ball, strike };
+}
+
+function incluedsChar(str, ch) {
+  for (let i = 0; i < str.length; i += 1) {
+    if (str[i] === ch) return true;
+  }
+  return false;
 }
