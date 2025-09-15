@@ -1,9 +1,14 @@
-/* 기능 구현 1. 사용자 입력 처리 & 잘못된 값 입력 판별 기능
-  - 규칙 : 길이 3, 각 자리 1~9 숫자, 중복 안됨
-  - 잘못된 입력이면 alert 띄우기
-*/
-
+/**
+ * 숫자야구게임 인스턴스를 생성합니다.
+ * - 판정과 결과 문자열 생성을 위한 `play` 메서드를 제공합니다.
+ */
 export default function BaseballGame() {
+  /**
+   *
+   * @param {string|number} computerInputNumbers - 컴퓨터 생성 숫자입니다.
+   * @param {string|number} userInputNumbers - 사용자가 입력한 숫자입니다.
+   * @returns {string} 판정 결과 문자열("1볼 2스트라이크","낫싱"), 입력이 유효하지 않다면 빈 문자열("") 반환
+   */
   this.play = function (computerInputNumbers, userInputNumbers) {
     const computerInput = String(computerInputNumbers).trim();
     const userInput = String(userInputNumbers).trim();
@@ -37,10 +42,6 @@ function isValidInput(userInput, digitLen = DIGIT_LENGTH) {
   return true;
 }
 
-/* 기능 구현 2. 볼/스트라이크 판정 기능 추가
-  - 규칙 : 같은 수가 같은 자리 > 스트라이크 / 다른 자리 > 볼 / 전혀 없으면 > 낫싱
-*/
-
 function scoreStrikeBall(computerInput, userInput) {
   let ball = 0;
   let strike = 0;
@@ -58,22 +59,12 @@ function scoreStrikeBall(computerInput, userInput) {
   return { ball, strike };
 }
 
-/* 기능 구현 3. 판정 결과 문자열 출력 기능
-  - 낫싱/볼/스트라이크/볼+스트라이크
-  - 볼과 스트라이크 동시에 나오면 볼이 먼저
-*/
-
 function judgeResult(ball, strike) {
   if (ball === 0 && stirke === 0) return "낫싱";
   if (ball > 0 && strike > 0) return `${ball}볼 ${strike}스트라이크`;
   if (ball > 0) return `${ball}볼`;
   return `${strike}스트라이크`;
 }
-
-/* 기능 구현 4. 랜덤 숫자 생성 기능
-  - MissionUtils 라이브러리의 Random.pickNumberInRange 사용
-  - Random.pickNumberInRange를 세 번 호출하여 한 자리 수식 확정
-*/
 
 function makeComputerInput() {
   const correctAnswer = [];
@@ -89,11 +80,6 @@ function makeComputerInput() {
   // 배열을 문자열로 합치기 join() 함수 이용, 공백 없이
   return correctAnswer.join("");
 }
-
-/* 5. 게임 종료 및 재시작 기능
-  -컴퓨터 랜덤 생성 값과 사용자 입력 값이 같다면 -> 정답, 재시작 버튼 활성화
-  - 버튼 클릭 시 재시작
-*/
 
 document.addEventListener("DOMContentLoaded", () => {
   // DOM 요소들을 id로 가져옴
@@ -122,12 +108,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // 사용자가 잘못된 값 입력해 alert의 빈문자열 반환
     if (text === "") return;
 
-    // textContent와 value 차이점
-    // <p>, <div>, <span> 등 일반 요소: .textContent = '문자' (or .innerText)
-    // <input>, <textarea>, <select> 같은 폼 컨트롤: .value = '문자'
-    // textContent: CSS/레이아웃 무시, 공백/개행을 있는 그대로 넣음
-    // innerText: CSS 영향받음 (숨김 텍스트 제외, 줄바꿈/공백을 화면처럼 정규화)
-    // 솔직히 뭐가 다른건지 잘 모르겠음 CSS 공부 더 할 것.
     resultElement.textContent = text;
 
     if (text.includes(`${DIGIT_LENGTH}스트라이크`)) {
