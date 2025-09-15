@@ -12,8 +12,8 @@ export default function BaseballGame() {
       window.alert("올바르지 않은 입력입니다.");
       return "";
     }
-    const { ball, strike } = judgeCorrect(computerInput, userInput);
-    return resultJudge(ball, strike);
+    const { ball, strike } = scoreStrikeBall(computerInput, userInput);
+    return judgeResult(ball, strike);
   };
 }
 
@@ -42,7 +42,7 @@ function isValidInput(userInput) {
   - 규칙 : 같은 수가 같은 자리 > 스트라이크 / 다른 자리 > 볼 / 전혀 없으면 > 낫싱
 */
 
-function judgeCorrect(computerInput, userInput) {
+function scoreStrikeBall(computerInput, userInput) {
   let ball = 0;
   let strike = 0;
 
@@ -71,7 +71,7 @@ function includesChar(str, ch) {
   - 볼과 스트라이크 동시에 나오면 볼이 먼저
 */
 
-function resultJudge(ball, strike) {
+function judgeResult(ball, strike) {
   if (ball === 0 && strike === 0) {
     return "낫싱";
   } else if (ball > 0 && strike > 0) {
