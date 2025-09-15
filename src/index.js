@@ -52,18 +52,11 @@ function scoreStrikeBall(computerInput, userInput) {
       strike += 1;
     }
     // 같은 수가 다른 자리에 있을 경우
-    else if (includesChar(computerInput, userInput[i])) {
+    else if (computerInput.includes(userInput[i])) {
       ball += 1;
     }
   }
   return { ball, strike };
-}
-
-function includesChar(str, ch) {
-  for (let i = 0; i < str.length; i += 1) {
-    if (str[i] === ch) return true;
-  }
-  return false;
 }
 
 /* 기능 구현 3. 판정 결과 문자열 출력 기능
