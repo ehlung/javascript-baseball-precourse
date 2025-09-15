@@ -17,23 +17,22 @@ export default function BaseballGame() {
   };
 }
 
-// 유저가 입력한 값이 유효한지 검사하는 함수
-function isValidInput(userInput) {
+const DIGIT_LENGTH = 3; // 게임 자릿수를 상수로 선언 (매직 넘버 수정)
+
+function isValidInput(userInput, digitLen = DIGIT_LENGTH) {
+  const s = String(userInput);
+
   // 1) 길이가 3이 아니면 false
-  if (userInput.length !== 3) return false;
+  if (s.length !== digitLen) return false;
 
   // 2) 각 자리 숫자가 1~9인지 검사
-  const first = userInput[0],
-    second = userInput[1],
-    third = userInput[2];
-  if (first < "1" || first > "9") return false;
-  if (second < "1" || second > "9") return false;
-  if (third < "1" || third > "9") return false;
+  for (let i = 0; i < s.length; i++) {
+    const ch = s[i];
+    if (ch < "1" || ch > "9") return false;
+  }
 
   // 3) 중복 확인
-  if (first === second) return false;
-  if (first === third) return false;
-  if (second === third) return false;
+  if (new Set(s).size !== s.length) return false;
 
   return true;
 }
