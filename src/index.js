@@ -12,7 +12,7 @@ export default function BaseballGame() {
       window.alert("올바르지 않은 입력입니다.");
       return "";
     }
-    const { ball, strike } = scoreStrikeBall(computerInput, userInput);
+    const { ball, strike } = scoreStrikeBall(computerInput.get(), userInput);
     return judgeResult(ball, strike);
   };
 }
@@ -102,14 +102,22 @@ document.addEventListener("DOMContentLoaded", () => {
   const resultElement = document.getElementById("result");
   const restartButton = document.getElementById("game-restart-button");
 
-  let computerInput = makeComputerInput();
+  const computerInput = (() => {
+    let value = makeComputerInput();
+    return {
+      get: () => value,
+      restart: () => {
+        value = makeComputerInput();
+      },
+    };
+  })();
 
   const game = new BaseballGame();
 
   function onClickSubmitButton(event) {
     event.preventDefault(); // 제출(새로고침) 막기
     const userInput = inputElement.value;
-    const text = game.play(computerInput, userInput);
+    const text = game.play(computerInput.get(), userInput);
 
     // 사용자가 잘못된 값 입력해 alert의 빈문자열 반환
     if (text === "") return;
@@ -122,13 +130,14 @@ document.addEventListener("DOMContentLoaded", () => {
     // 솔직히 뭐가 다른건지 잘 모르겠음 CSS 공부 더 할 것.
     resultElement.textContent = text;
 
-    if (text.includes("3스트라이크")) {
+    if (text.includes(`${DIGIT_LENGTH}스트라이크`)) {
+      // 매직넘버 수정
       restartButton.hidden = false;
     }
   }
 
   function onClickRestartButton() {
-    computerInput = makeComputerInput();
+    computerInput.restart();
     // 입출력 초기화
     inputElement.value = "";
     resultElement.textContent = "";
