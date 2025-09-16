@@ -25,16 +25,16 @@ export default function BaseballGame() {
 const DIGIT_LENGTH = 3; // 게임 자릿수를 상수로 선언 (매직 넘버 수정)
 
 function isValidInput(userInput, digitLen = DIGIT_LENGTH) {
-  const s = String(userInput).trim();
+  const userInputString = String(userInput).trim();
 
   // 1) 길이가 3이 아니면 false
-  if (s.length !== digitLen) return false;
+  if (userInputString.length !== digitLen) return false;
 
   // 2) 각 자리 숫자가 1~9인지 검사
-  if ([...s].some((ch) => ch < "1" || ch > "9")) return false;
+  if ([...userInputString].some((ch) => ch < "1" || ch > "9")) return false;
 
   // 3) 중복 확인
-  if (new Set(s).size !== s.length) return false;
+  if (new Set(userInputString).size !== userInputString.length) return false;
 
   return true;
 }
