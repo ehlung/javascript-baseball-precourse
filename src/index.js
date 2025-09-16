@@ -17,7 +17,7 @@ export default function BaseballGame() {
       window.alert("올바르지 않은 입력입니다.");
       return "";
     }
-    const { ball, strike } = scoreStrikeBall(computerInput.get(), userInput);
+    const { ball, strike } = scoreStrikeBall(computerInput, userInput);
     return judgeResult(ball, strike);
   };
 }
@@ -25,16 +25,13 @@ export default function BaseballGame() {
 const DIGIT_LENGTH = 3; // 게임 자릿수를 상수로 선언 (매직 넘버 수정)
 
 function isValidInput(userInput, digitLen = DIGIT_LENGTH) {
-  const s = String(userInput);
+  const s = String(userInput).trim();
 
   // 1) 길이가 3이 아니면 false
   if (s.length !== digitLen) return false;
 
   // 2) 각 자리 숫자가 1~9인지 검사
-  for (let i = 0; i < s.length; i++) {
-    const ch = s[i];
-    if (ch < "1" || ch > "9") return false;
-  }
+  if ([...s].some((ch) => ch < "1" || ch > "9")) return false;
 
   // 3) 중복 확인
   if (new Set(s).size !== s.length) return false;
@@ -60,7 +57,7 @@ function scoreStrikeBall(computerInput, userInput) {
 }
 
 function judgeResult(ball, strike) {
-  if (ball === 0 && stirke === 0) return "낫싱";
+  if (ball === 0 && strike === 0) return "낫싱";
   if (ball > 0 && strike > 0) return `${ball}볼 ${strike}스트라이크`;
   if (ball > 0) return `${ball}볼`;
   return `${strike}스트라이크`;
