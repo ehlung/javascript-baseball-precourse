@@ -1,30 +1,33 @@
+<!--html 문서 : 웹페이지의 구조를 만듦-->
+<!--버튼, 입력창, 텍스트 같은 걸 화면에 표시-->
+<!--여기서 id 속성은 JS에서 HTML 요소를 찾기 위한 이름표 역할-->
+<!--JS는 HTML의 요소들을 선택해서 조작할 수 있음 예: 버튼을 선택하면 클릭 이벤트를 걸 수 있음-->
+
 <!DOCTYPE html>
 <html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>숫자 야구 게임</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <title>숫자 야구 게임</title>
-</head>
-
-<body>
-  <div id="app">
-    <h1>⚾ 숫자 야구 게임</h1>
-    <p>
-      <strong>1~9까지의 수</strong>를 중복없이
-      <strong>3개</strong> 입력해주세요. <br />
-      올바른 예) 139 <br />
-      틀린 예) 122
-    </p>
-    <form>
-      <input type="text" id="user-input" />
-      <button id="submit">확인</button>
-    </form>
-    <h3>📄 결과</h3>
-    <div id="result">1볼 1스트라이크</div>
-    <button id="game-restart-button">재시작</button>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/@woowacourse/mission-utils@1.0.1/dist/mission-utils.min.js"></script>
-  <script type="module" src="src/index.js"></script>
-</body>
-
+  <body>
+    <div id="app">
+      <h1>⚾ 숫자 야구 게임</h1>
+      <p>
+        <strong>1~9까지의 수</strong>를 중복없이 표시
+        <strong>3개</strong> 입력해주세요. <br />
+        올바른 예) 139 <br />
+        틀린 예) 122
+      </p>
+      <form>
+        <input type="text" id="user-input" />
+        <button id="submit">확인</button>
+      </form>
+      <h3>📄 결과</h3>
+      <div id="result"></div>
+      <button id="game-restart-button">재시작</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@woowacourse/mission-utils@1.0.1/dist/mission-utils.min.js"></script>
+    <script type="module" src="src/index.js"></script>
+  </body>
 </html>
