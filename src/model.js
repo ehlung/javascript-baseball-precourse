@@ -39,13 +39,13 @@ export function judgeResult(ball, strike) {
 }
 
 export function makeComputerInput() {
-  const correctAnswer = [];
+  const correctAnswer = new Set();
 
   while (correctAnswer.length < DIGIT_LENGTH) {
     const digit = window.MissionUtils.Random.pickNumberInRange(1, 9);
-    if (!correctAnswer.includes(digit)) {
-      correctAnswer.push(digit);
+    if (!correctAnswer.has(digit)) {
+      correctAnswer.add(digit);
     }
   }
-  return correctAnswer.join("");
+  return [...correctAnswer].join("");
 }
