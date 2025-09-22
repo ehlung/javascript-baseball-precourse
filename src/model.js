@@ -15,11 +15,9 @@ export const DIGIT_LENGTH = 3;
 
 export function isValidInput(userInput, digitLen = DIGIT_LENGTH) {
   const userInputString = String(userInput).trim();
-
-  if (userInputString.length !== digitLen) return false;
-  if ([...userInputString].some((ch) => ch < "1" || ch > "9")) return false;
-  if (new Set(userInputString).size !== userInputString.length) return false;
-  return true;
+  return new RegExp(`^(?!.*([1-9]).*\\1)[1-9]{${digitLen}}$`).test(
+    userInputString
+  );
 }
 
 export function scoreStrikeBall(computerInput, userInput) {
