@@ -9,8 +9,11 @@ export default {
     document.getElementById("user-input").value = "";
     document.getElementById("result").textContent = "";
   },
-  restartButton(show) {
-    document.getElementById("game-restart-button").hidden = !show;
+  showRestartButton() {
+    document.getElementById("game-restart-button").hidden = false;
+  },
+  hideRestartButton() {
+    document.getElementById("game-restart-button").hidden = true;
   },
   showAlert(message) {
     alert(message);
