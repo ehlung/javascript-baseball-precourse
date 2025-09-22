@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
     View.hideRestartButton();
   }
 
-  function submitButton(e) {
+  function onClickSubmitButton(e) {
     e.preventDefault();
     try {
       const userInput = View.getInput();
@@ -36,7 +36,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  document.getElementById("submit").addEventListener("click", submitButton);
+  document
+    .getElementById("submit")
+    .addEventListener("click", onClickSubmitButton);
   document
     .getElementById("game-restart-button")
     .addEventListener("click", restartGame);
