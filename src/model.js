@@ -41,7 +41,7 @@ export function judgeResult(ball, strike) {
 export function makeComputerInput() {
   const correctAnswer = new Set();
 
-  while (correctAnswer.length < DIGIT_LENGTH) {
+  while (correctAnswer.size < DIGIT_LENGTH) {
     const digit = window.MissionUtils.Random.pickNumberInRange(1, 9);
     if (!correctAnswer.has(digit)) {
       correctAnswer.add(digit);
