@@ -8,14 +8,14 @@ document.addEventListener("DOMContentLoaded", () => {
     let value = makeComputerInput();
     return {
       get: () => value,
-      restartAnswer: () => {
+      resetAnswer: () => {
         value = makeComputerInput();
       },
     };
   })();
 
   function restartGame() {
-    computerInput.restartAnswer();
+    computerInput.resetAnswer();
     View.clear();
     View.restartButton(false);
   }
