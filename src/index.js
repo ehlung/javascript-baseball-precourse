@@ -23,12 +23,13 @@ document.addEventListener("DOMContentLoaded", () => {
   function onClickSubmitButton(e) {
     e.preventDefault();
     try {
-      const userInput = View.getInput();
-      const text = game.play(computerInput.get(), userInput);
+      const userGuess = View.getInput();
+      const computerAnswer = computerInput.get();
+      const resultMessage = game.play(computerAnswer, userGuess);
 
-      View.showResult(text);
+      View.showResult(resultMessage);
 
-      if (text.includes(`${DIGIT_LENGTH}스트라이크`)) {
+      if (resultMessage.includes(`${DIGIT_LENGTH}스트라이크`)) {
         View.showRestartButton();
       }
     } catch (err) {
