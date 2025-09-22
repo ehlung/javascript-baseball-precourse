@@ -3,7 +3,9 @@ export default function BaseballGame() {
     const computerInput = String(computerInputNumbers).trim();
     const userInput = String(userInputNumbers).trim();
 
-    if (!isValidInput(userInput)) return "";
+    if (!isValidInput(userInput)) {
+      throw new Error("올바르지 않은 입력입니다.");
+    }
     const { ball, strike } = scoreStrikeBall(computerInput, userInput);
     return judgeResult(ball, strike);
   };
