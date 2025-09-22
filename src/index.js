@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function restartGame() {
     computerInput.resetAnswer();
     View.clear();
-    View.hideRestartButton;
+    View.hideRestartButton();
   }
 
   function submitButton(e) {
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
     View.showResult(text);
 
     if (text.includes(`${DIGIT_LENGTH}스트라이크`)) {
-      View.showRestartButton;
+      View.showRestartButton();
     }
   }
 
@@ -41,5 +41,5 @@ document.addEventListener("DOMContentLoaded", () => {
   document
     .getElementById("game-restart-button")
     .addEventListener("click", restartGame);
-  View.hideRestartButton;
+  View.hideRestartButton();
 });
