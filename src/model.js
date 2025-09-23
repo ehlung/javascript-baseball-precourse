@@ -43,9 +43,7 @@ export function makeComputerInput() {
 
   while (correctAnswer.size < DIGIT_LENGTH) {
     const digit = window.MissionUtils.Random.pickNumberInRange(1, 9);
-    if (!correctAnswer.has(digit)) {
-      correctAnswer.add(digit);
-    }
+    correctAnswer.add(digit);
   }
   return [...correctAnswer].join("");
 }
