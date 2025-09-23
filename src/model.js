@@ -15,9 +15,9 @@ export const DIGIT_LENGTH = 3;
 
 export function isValidInput(userInput, digitLen = DIGIT_LENGTH) {
   const userInputString = String(userInput).trim();
-  return new RegExp(`^(?!.*([1-9]).*\\1)[1-9]{${digitLen}}$`).test(
-    userInputString
-  );
+  const isValid = new RegExp(`^[1-9]{${digitLen}}$`).test(userInputString);
+  const isUnique = new Set(userInputString).size === userInputString.length;
+  return isValid && isUnique;
 }
 
 export function scoreStrikeBall(computerInput, userInput) {
